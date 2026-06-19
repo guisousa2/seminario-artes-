@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumina Skin – Branding Kit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --sage: #A8C3A0;
+      --sage-dark: #7EA878;
+      --beige: #F5EFE6;
+      --beige-dark: #EBE0D0;
+      --white: #FFFFFF;
+      --brown: #BFA58A;
+      --brown-dark: #9C856D;
+      --text: #2D2D2D;
+      --text-light: #6B6B6B;
+      --shadow: 0 8px 32px rgba(0,0,0,0.08);
+      --radius: 16px;
+      --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+    h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 4rem;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(168,195,160,0.2);
+      transition: var(--transition);
+    }
+    nav.scrolled { padding: 0.6rem 4rem; box-shadow: var(--shadow); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-icon {
+      width: 38px; height: 38px; background: linear-gradient(135deg,var(--sage),var(--sage-dark));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo-icon svg { width: 20px; height: 20px; fill: white; }
+    .nav-logo span { font-family:'Poppins',sans-serif; font-weight:700; font-size:1.2rem; color:var(--text); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { font-size:0.88rem; font-weight:500; color:var(--text-light); transition:var(--transition); }
+    .nav-links a:hover { color:var(--sage-dark); }
+    .nav-cta {
+      background: var(--sage); color: white; padding: 0.5rem 1.4rem;
+      border-radius: 50px; font-size: 0.85rem; font-weight:600;
+      transition: var(--transition); cursor: pointer; border: none;
+    }
+    .nav-cta:hover { background: var(--sage-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(168,195,160,0.5); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      background: linear-gradient(135deg, #F5EFE6 0%, #E8F0E6 50%, #F0EBE0 100%);
+      padding: 8rem 4rem 4rem; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content:''; position:absolute; top:-100px; right:-100px;
+      width:600px; height:600px;
+      background: radial-gradient(circle, rgba(168,195,160,0.25) 0%, transparent 70%);
+      border-radius:50%; animation: float 8s ease-in-out infinite;
+    }
+    .hero::after {
+      content:''; position:absolute; bottom:-80px; left:-80px;
+      width:400px; height:400px;
+      background: radial-gradient(circle, rgba(191,165,138,0.2) 0%, transparent 70%);
+      border-radius:50%; animation: float 6s ease-in-out infinite reverse;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
+    .hero-content { flex:1; max-width:600px; z-index:2; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(168,195,160,0.2); border:1px solid rgba(168,195,160,0.4);
+      padding:0.4rem 1rem; border-radius:50px; margin-bottom:1.5rem;
+      font-size:0.8rem; font-weight:600; color:var(--sage-dark); letter-spacing:1px; text-transform:uppercase;
+    }
+    .hero-title { font-size: clamp(2.8rem,6vw,5rem); line-height:1.1; margin-bottom:1rem; }
+    .hero-title .brand { color:var(--sage-dark); }
+    .hero-slogan { font-size:1.25rem; color:var(--text-light); margin-bottom:2.5rem; font-style:italic; font-weight:300; }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg,var(--sage),var(--sage-dark));
+      color:white; padding:0.9rem 2rem; border-radius:50px;
+      font-weight:600; font-size:0.95rem; border:none; cursor:pointer;
+      transition:var(--transition); display:flex; align-items:center; gap:8px;
+    }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(126,168,120,0.45); }
+    .btn-secondary {
+      background:transparent; color:var(--text); padding:0.9rem 2rem;
+      border-radius:50px; font-weight:600; font-size:0.95rem;
+      border:2px solid rgba(45,45,45,0.2); cursor:pointer; transition:var(--transition);
+    }
+    .btn-secondary:hover { border-color:var(--sage); color:var(--sage-dark); }
+    .hero-visual { flex:1; display:flex; justify-content:center; align-items:center; z-index:2; }
+    .hero-product-showcase {
+      position:relative; width:420px; height:480px;
+    }
+    .hero-blob {
+      position:absolute; inset:0;
+      background: linear-gradient(135deg,rgba(168,195,160,0.3),rgba(191,165,138,0.2));
+      border-radius:60% 40% 55% 45% / 45% 55% 45% 55%;
+      animation: morphBlob 8s ease-in-out infinite;
+    }
+    @keyframes morphBlob {
+      0%,100%{border-radius:60% 40% 55% 45% / 45% 55% 45% 55%}
+      33%{border-radius:50% 50% 40% 60% / 55% 45% 55% 45%}
+      66%{border-radius:45% 55% 60% 40% / 60% 40% 50% 50%}
+    }
+
+    .hero-product-cards {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    }
+    .h-card {
+      position:absolute; background:white; border-radius:20px;
+      padding:1.2rem; box-shadow:0 12px 40px rgba(0,0,0,0.1);
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+      animation: floatCard 4s ease-in-out infinite;
+    }
+    .h-card:nth-child(1){width:130px;top:30px;left:20px;animation-delay:0s;}
+    .h-card:nth-child(2){width:150px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:1s;}
+    .h-card:nth-child(3){width:130px;bottom:30px;right:20px;animation-delay:2s;}
+    @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .h-card:nth-child(2){animation-name:floatCardCenter}
+    @keyframes floatCardCenter{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-10px)}}
+    .h-card-icon {
+      width:60px;height:60px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+    }
+    .h-card:nth-child(1) .h-card-icon{background:linear-gradient(135deg,#E8F5E4,#C8E6C0)}
+    .h-card:nth-child(2) .h-card-icon{background:linear-gradient(135deg,#FFF3E0,#FFE0B2);width:75px;height:75px;border-radius:18px;font-size:2.2rem}
+    .h-card:nth-child(3) .h-card-icon{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+    .h-card span{font-size:0.72rem;font-weight:600;color:var(--text);text-align:center;font-family:'Poppins',sans-serif}
+    .h-card:nth-child(2) span{font-size:0.82rem}
+
+    /* ===== SECTION COMMONS ===== */
+    section { padding: 6rem 4rem; }
+    .section-label {
+      display:inline-block; font-size:0.75rem; font-weight:700; letter-spacing:2px;
+      text-transform:uppercase; color:var(--sage-dark); margin-bottom:0.75rem;
+    }
+    .section-title { font-size: clamp(1.8rem,3.5vw,2.8rem); margin-bottom:1rem; }
+    .section-desc { font-size:1rem; color:var(--text-light); max-width:600px; line-height:1.7; }
+    .section-header { margin-bottom:3.5rem; }
+    .section-header.center { text-align:center; }
+    .section-header.center .section-desc { margin:0 auto; }
+
+    /* ===== STRATEGY ===== */
+    #estrategia { background: var(--beige); }
+    .strategy-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
+    .mvv-cards { display:grid; gap:1.5rem; }
+    .mvv-card {
+      background:white; border-radius:var(--radius); padding:2rem;
+      box-shadow:var(--shadow); border-left:4px solid var(--sage);
+      transition:var(--transition);
+    }
+    .mvv-card:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.12); }
+    .mvv-card h4 { font-size:0.85rem; letter-spacing:2px; text-transform:uppercase; color:var(--sage-dark); margin-bottom:0.5rem; }
+    .mvv-card p { color:var(--text-light); line-height:1.6; font-size:0.95rem; }
+    .values-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .value-item {
+      background:white; border-radius:12px; padding:1.2rem;
+      display:flex; align-items:center; gap:12px; box-shadow:0 2px 12px rgba(0,0,0,0.05);
+      transition:var(--transition);
+    }
+    .value-item:hover { transform:translateX(4px); }
+    .value-icon {
+      width:40px;height:40px;border-radius:10px;
+      background:linear-gradient(135deg,var(--sage),var(--sage-dark));
+      display:flex;align-items:center;justify-content:center;color:white;font-size:1rem;flex-shrink:0;
+    }
+    .value-item span{font-weight:600;font-size:0.9rem;font-family:'Poppins',sans-serif}
+
+    .persona-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .persona-card {
+      background:white; border-radius:var(--radius); padding:2rem;
+      box-shadow:var(--shadow); text-align:center; transition:var(--transition);
+    }
+    .persona-card:hover { transform:translateY(-6px); }
+    .persona-avatar {
+      width:80px;height:80px;border-radius:50%;margin:0 auto 1rem;
+      display:flex;align-items:center;justify-content:center;font-size:2rem;
+    }
+    .persona-card:nth-child(1) .persona-avatar{background:linear-gradient(135deg,#E8F5E4,#C8E6C0)}
+    .persona-card:nth-child(2) .persona-avatar{background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
+    .persona-card h4{font-size:1.1rem;margin-bottom:0.25rem}
+    .persona-card .age{font-size:0.8rem;color:var(--sage-dark);font-weight:600;margin-bottom:0.75rem}
+    .persona-card p{font-size:0.85rem;color:var(--text-light);line-height:1.6}
+    .differential { margin-top:3rem; background:white; border-radius:var(--radius); padding:2.5rem; box-shadow:var(--shadow); }
+    .differential h3{font-size:1.3rem;margin-bottom:1.5rem}
+    .diff-items{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .diff-item{display:flex;align-items:flex-start;gap:10px}
+    .diff-item i{color:var(--sage-dark);margin-top:2px;font-size:1.1rem}
+    .diff-item span{font-size:0.9rem;color:var(--text-light);line-height:1.5}
+
+    /* ===== IDENTITY ===== */
+    #identidade { background: white; }
+    .identity-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
+    .logo-showcase {
+      background:var(--beige); border-radius:var(--radius); padding:3rem;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:1.5rem; min-height:300px;
+    }
+    .logo-main { text-align:center; }
+    .logo-svg-wrap {
+      width:120px;height:120px;margin:0 auto 1rem;
+      background:linear-gradient(135deg,var(--sage),var(--sage-dark));
+      border-radius:30px; display:flex; align-items:center; justify-content:center;
+      box-shadow:0 12px 32px rgba(126,168,120,0.35);
+    }
+    .logo-svg-wrap svg{width:64px;height:64px}
+    .logo-name{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:800;color:var(--text)}
+    .logo-name span{color:var(--sage-dark)}
+    .logo-tagline{font-size:0.9rem;color:var(--text-light);letter-spacing:3px;text-transform:uppercase}
+    .color-palette { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:2rem; }
+    .color-card {
+      border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,0.08);
+      transition:var(--transition); cursor:pointer;
+    }
+    .color-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+    .color-swatch{height:100px;}
+    .color-info{background:white;padding:0.75rem}
+    .color-info .name{font-size:0.75rem;font-weight:700;font-family:'Poppins',sans-serif;margin-bottom:2px}
+    .color-info .hex{font-size:0.7rem;color:var(--text-light);font-family:monospace}
+    .typography-showcase { margin-top:2rem; }
+    .type-item { margin-bottom:1.5rem; padding:1.5rem; background:var(--beige); border-radius:12px; }
+    .type-label{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--sage-dark);margin-bottom:0.5rem}
+    .type-heading{font-family:'Poppins',sans-serif;font-size:2rem;font-weight:700;line-height:1.2}
+    .type-body{font-family:'Inter',sans-serif;font-size:1rem;color:var(--text-light);line-height:1.6}
+    .concept-pills{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
+    .pill{
+      padding:0.4rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:600;
+      background:rgba(168,195,160,0.2);color:var(--sage-dark);border:1px solid rgba(168,195,160,0.4);
+    }
+
+    /* ===== GRAPHIC ELEMENTS ===== */
+    #elementos { background:var(--beige); }
+    .elements-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:1.5rem; }
+    .element-card {
+      background:white; border-radius:var(--radius); padding:2rem 1.5rem;
+      text-align:center; box-shadow:var(--shadow); transition:var(--transition); cursor:pointer;
+    }
+    .element-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,0.12)}
+    .element-card:hover .element-icon{transform:scale(1.15) rotate(5deg)}
+    .element-icon{font-size:2.5rem;margin-bottom:1rem;transition:var(--transition);display:block}
+    .element-card h4{font-size:0.9rem;font-family:'Poppins',sans-serif;font-weight:600;margin-bottom:0.4rem}
+    .element-card p{font-size:0.78rem;color:var(--text-light)}
+    .pattern-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+    .pattern-box{
+      height:120px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+      font-size:2rem;transition:var(--transition);cursor:pointer;
+    }
+    .pattern-box:hover{transform:scale(1.05)}
+
+    /* ===== PRODUCTS ===== */
+    #produtos { background:white; }
+    .products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .product-card {
+      background:var(--beige); border-radius:var(--radius); overflow:hidden;
+      box-shadow:var(--shadow); transition:var(--transition); cursor:pointer;
+    }
+    .product-card:hover{transform:translateY(-8px);box-shadow:0 20px 56px rgba(0,0,0,0.14)}
+    .product-visual{
+      height:220px;display:flex;align-items:center;justify-content:center;
+      position:relative;overflow:hidden;
+    }
+    .product-bg-shape{
+      position:absolute;width:180px;height:180px;border-radius:50%;
+      opacity:0.4;transition:var(--transition);
+    }
+    .product-card:hover .product-bg-shape{transform:scale(1.2);opacity:0.6}
+    .product-emoji{font-size:5rem;position:relative;z-index:1;transition:var(--transition)}
+    .product-card:hover .product-emoji{transform:scale(1.1) rotate(-5deg)}
+    .product-info{padding:1.8rem}
+    .product-tag{
+      font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+      color:var(--sage-dark);margin-bottom:0.5rem;
+    }
+    .product-name{font-family:'Poppins',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:0.75rem}
+    .product-desc{font-size:0.88rem;color:var(--text-light);line-height:1.6;margin-bottom:1.2rem}
+    .product-benefits{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+    .benefit-tag{
+      font-size:0.72rem;padding:0.3rem 0.75rem;border-radius:50px;
+      background:rgba(168,195,160,0.2);color:var(--sage-dark);font-weight:600;
+    }
+    .product-btn{
+      width:100%;padding:0.75rem;border-radius:50px;border:none;
+      background:linear-gradient(135deg,var(--sage),var(--sage-dark));
+      color:white;font-weight:600;font-size:0.9rem;cursor:pointer;transition:var(--transition);
+    }
+    .product-btn:hover{opacity:0.9;transform:translateY(-1px)}
+
+    /* ===== APPLICATIONS ===== */
+    #aplicacoes { background:var(--beige); }
+    .app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+    .app-card{
+      background:white;border-radius:var(--radius);overflow:hidden;
+      box-shadow:var(--shadow);transition:var(--transition);
+    }
+    .app-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,0.12)}
+    .app-visual{
+      height:180px;display:flex;align-items:center;justify-content:center;
+      font-size:4rem;transition:var(--transition);
+    }
+    .app-card:hover .app-visual{transform:scale(1.05)}
+    .app-info{padding:1.5rem}
+    .app-info h4{font-size:1.05rem;margin-bottom:0.5rem}
+    .app-info p{font-size:0.85rem;color:var(--text-light);line-height:1.6}
+
+    /* ===== DELIVERABLES ===== */
+    #entregaveis{background:white}
+    .deliverables-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+    .del-card{
+      background:var(--beige);border-radius:var(--radius);padding:2rem 1.5rem;
+      text-align:center;transition:var(--transition);cursor:pointer;
+      border:2px solid transparent;
+    }
+    .del-card:hover{border-color:var(--sage);transform:translateY(-4px);background:white;box-shadow:var(--shadow)}
+    .del-icon{
+      width:64px;height:64px;border-radius:16px;margin:0 auto 1.2rem;
+      display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+      background:linear-gradient(135deg,rgba(168,195,160,0.3),rgba(168,195,160,0.1));
+      transition:var(--transition);
+    }
+    .del-card:hover .del-icon{background:linear-gradient(135deg,var(--sage),var(--sage-dark));color:white}
+    .del-card h4{font-size:0.95rem;margin-bottom:0.5rem}
+    .del-card p{font-size:0.8rem;color:var(--text-light);line-height:1.5}
+
+    /* ===== INTERACTIVE ===== */
+    #interativo{background:linear-gradient(135deg,#E8F0E6,var(--beige))}
+    .interactive-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+    /* Quiz */
+    .quiz-card{background:white;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow)}
+    .quiz-card h3{font-size:1.3rem;margin-bottom:1.5rem}
+    .quiz-question{font-size:1rem;color:var(--text);margin-bottom:1.2rem;font-weight:500}
+    .quiz-options{display:flex;flex-direction:column;gap:0.75rem}
+    .quiz-opt{
+      padding:0.9rem 1.2rem;border-radius:12px;border:2px solid var(--beige-dark);
+      cursor:pointer;transition:var(--transition);font-size:0.9rem;background:white;text-align:left;
+    }
+    .quiz-opt:hover{border-color:var(--sage);background:rgba(168,195,160,0.08)}
+    .quiz-opt.correct{border-color:#4CAF50;background:rgba(76,175,80,0.1);color:#2E7D32}
+    .quiz-opt.wrong{border-color:#f44336;background:rgba(244,67,54,0.1);color:#c62828}
+    .quiz-feedback{margin-top:1rem;padding:1rem;border-radius:12px;font-size:0.9rem;display:none}
+    .quiz-next{margin-top:1.2rem;width:100%}
+    .quiz-progress{display:flex;gap:6px;margin-bottom:1.5rem}
+    .q-dot{width:8px;height:8px;border-radius:50%;background:var(--beige-dark);transition:var(--transition)}
+    .q-dot.done{background:var(--sage)}
+    .q-dot.active{background:var(--sage-dark);width:24px;border-radius:4px}
+
+    /* Timeline */
+    .timeline-card{background:white;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow)}
+    .timeline-card h3{font-size:1.3rem;margin-bottom:2rem}
+    .timeline{position:relative;padding-left:2rem}
+    .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--beige-dark)}
+    .t-item{position:relative;margin-bottom:1.8rem}
+    .t-dot{
+      position:absolute;left:-28px;top:4px;width:18px;height:18px;
+      border-radius:50%;background:var(--sage);border:3px solid white;
+      box-shadow:0 0 0 3px rgba(168,195,160,0.3);
+    }
+    .t-item h4{font-size:0.95rem;margin-bottom:0.25rem}
+    .t-item p{font-size:0.82rem;color:var(--text-light);line-height:1.5}
+    /* Before/After */
+    .ba-card{background:white;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow);grid-column:span 2}
+    .ba-card h3{font-size:1.3rem;margin-bottom:1.5rem}
+    .ba-slider-wrap{position:relative;border-radius:12px;overflow:hidden;height:200px}
+    .ba-after,.ba-before{
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      font-size:0.9rem;font-weight:600;
+    }
+    .ba-before{background:linear-gradient(135deg,#E0E0E0,#BDBDBD);color:#555;border-radius:12px}
+    .ba-after{background:linear-gradient(135deg,var(--beige),rgba(168,195,160,0.3));color:var(--text);clip-path:inset(0 50% 0 0);transition:clip-path 0.1s}
+    .ba-line{position:absolute;top:0;bottom:0;width:3px;background:white;cursor:ew-resize;z-index:10;left:50%;transform:translateX(-50%)}
+    .ba-handle{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:40px;height:40px;border-radius:50%;background:white;
+      box-shadow:0 4px 16px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;
+      cursor:ew-resize;color:var(--sage-dark);font-size:1rem;
+    }
+    .ba-labels{display:flex;justify-content:space-between;margin-top:1rem}
+    .ba-label{font-size:0.8rem;font-weight:600;color:var(--text-light);display:flex;align-items:center;gap:6px}
+    .ba-before-content,.ba-after-content{padding:2rem;text-align:center}
+    .ba-before-content h5,.ba-after-content h5{font-size:1rem;margin-bottom:0.5rem}
+    .ba-before-content p,.ba-after-content p{font-size:0.82rem;line-height:1.5}
+    .ba-after-content{color:var(--text)}
+
+    /* ===== TEAM ===== */
+    #equipe{background:var(--beige)}
+    .team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem}
+    .team-card{
+      background:white;border-radius:var(--radius);padding:2rem 1.5rem;
+      text-align:center;box-shadow:var(--shadow);transition:var(--transition);
+    }
+    .team-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,0.12)}
+    .team-avatar{
+      width:72px;height:72px;border-radius:50%;margin:0 auto 1rem;
+      display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+      border:3px solid var(--beige-dark);
+    }
+    .team-card:nth-child(1) .team-avatar{background:linear-gradient(135deg,#E3F2FD,#BBDEFB)}
+    .team-card:nth-child(2) .team-avatar{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+    .team-card:nth-child(3) .team-avatar{background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
+    .team-card:nth-child(4) .team-avatar{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+    .team-card:nth-child(5) .team-avatar{background:linear-gradient(135deg,#FCE4EC,#F8BBD0)}
+    .team-name{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.25rem}
+    .team-role{font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage-dark);margin-bottom:0.75rem}
+    .team-contributions{list-style:none}
+    .team-contributions li{font-size:0.78rem;color:var(--text-light);line-height:1.8;padding:0.15rem 0;border-top:1px solid var(--beige);text-align:left;padding-left:1rem;position:relative}
+    .team-contributions li::before{content:'✓';position:absolute;left:0;color:var(--sage-dark);font-weight:700}
+
+    /* ===== FOOTER ===== */
+    footer{background:var(--text);color:white;padding:3rem 4rem;text-align:center}
+    .footer-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:1rem}
+    .footer-logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--sage),var(--sage-dark));border-radius:50%;display:flex;align-items:center;justify-content:center}
+    footer p{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.6}
+    footer span{color:var(--sage)}
+
+    /* ===== MODAL ===== */
+    .modal-overlay{
+      position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;
+      display:flex;align-items:center;justify-content:center;padding:2rem;
+      opacity:0;pointer-events:none;transition:var(--transition);backdrop-filter:blur(4px);
+    }
+    .modal-overlay.active{opacity:1;pointer-events:all}
+    .modal{
+      background:white;border-radius:24px;max-width:600px;width:100%;
+      padding:3rem;box-shadow:0 32px 80px rgba(0,0,0,0.25);
+      transform:scale(0.9) translateY(20px);transition:var(--transition);max-height:90vh;overflow-y:auto;
+    }
+    .modal-overlay.active .modal{transform:scale(1) translateY(0)}
+    .modal-close{
+      position:absolute;top:1.5rem;right:1.5rem;width:36px;height:36px;
+      border-radius:50%;background:var(--beige);border:none;cursor:pointer;
+      font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:var(--transition);
+    }
+    .modal-close:hover{background:var(--beige-dark);transform:rotate(90deg)}
+    .modal{position:relative}
+    .modal-emoji{font-size:4rem;margin-bottom:1.5rem;display:block;text-align:center}
+    .modal h2{font-size:1.8rem;margin-bottom:0.5rem;text-align:center}
+    .modal .modal-tag{display:block;text-align:center;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage-dark);margin-bottom:1.5rem}
+    .modal p{color:var(--text-light);line-height:1.7;margin-bottom:1.5rem}
+    .modal-benefits h4{font-size:1rem;margin-bottom:1rem}
+    .modal-benefits ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+    .modal-benefits li{display:flex;align-items:center;gap:10px;font-size:0.9rem;color:var(--text-light)}
+    .modal-benefits li::before{content:'🌿';font-size:1rem}
+    .modal-ingredients{margin-top:1.5rem}
+    .modal-ingredients h4{font-size:1rem;margin-bottom:0.75rem}
+    .ing-tags{display:flex;gap:0.5rem;flex-wrap:wrap}
+    .ing-tag{padding:0.4rem 1rem;border-radius:50px;font-size:0.78rem;font-weight:600;background:rgba(168,195,160,0.2);color:var(--sage-dark)}
+
+    /* ===== REVEAL ANIMATION ===== */
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .reveal-left.visible{opacity:1;transform:translateX(0)}
+    .reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .reveal-right.visible{opacity:1;transform:translateX(0)}
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:1024px){
+      nav{padding:1rem 2rem}
+      section{padding:4rem 2rem}
+      .hero{padding:7rem 2rem 4rem;flex-direction:column;text-align:center}
+      .hero-btns{justify-content:center}
+      .hero-product-showcase{width:340px;height:380px}
+      .strategy-grid,.identity-grid,.interactive-grid{grid-template-columns:1fr}
+      .products-grid,.app-grid{grid-template-columns:1fr 1fr}
+      .deliverables-grid{grid-template-columns:1fr 1fr}
+      .team-grid{grid-template-columns:repeat(3,1fr)}
+      .ba-card{grid-column:span 1}
+    }
+    @media(max-width:640px){
+      nav{padding:1rem 1.5rem}
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .nav-links.open{
+        display:flex;flex-direction:column;
+        position:absolute;top:100%;left:0;right:0;
+        background:white;padding:1.5rem;gap:1rem;
+        box-shadow:0 8px 24px rgba(0,0,0,0.1);
+      }
+      section{padding:3.5rem 1.5rem}
+      .hero{padding:6rem 1.5rem 3rem}
+      .hero-product-showcase{width:280px;height:300px}
+      .products-grid,.app-grid,.persona-grid,.diff-items,.values-grid{grid-template-columns:1fr}
+      .deliverables-grid{grid-template-columns:1fr 1fr}
+      .team-grid{grid-template-columns:1fr 1fr}
+      .color-palette{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8 2 5 5.5 5 9c0 5 5 9 7 11 2-2 7-6 7-11 0-3.5-3-7-7-7zm0 9a2 2 0 110-4 2 2 0 010 4z"/>
+      </svg>
+    </div>
+    <span>Lumina Skin</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#estrategia">Estratégia</a></li>
+    <li><a href="#identidade">Identidade</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#aplicacoes">Aplicações</a></li>
+    <li><a href="#equipe">Equipe</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('estrategia').scrollIntoView({behavior:'smooth'})">Ver Branding</button>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-leaf"></i>
+      Branding Kit Escolar · Artes 2025
+    </div>
+    <h1 class="hero-title">
+      <span class="brand">Lumina</span><br>Skin
+    </h1>
+    <p class="hero-slogan">"Sua pele, sua luz."</p>
+    <p style="font-size:1rem;color:var(--text-light);margin-bottom:2rem;max-width:460px;line-height:1.7">
+      Skincare sustentável e acessível para jovens. Ingredientes naturais, embalagens ecológicas e foco em bem-estar, autoestima e meio ambiente.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('estrategia').scrollIntoView({behavior:'smooth'})">
+        <i class="fas fa-compass"></i> Explorar Branding
+      </button>
+      <button class="btn-secondary" onclick="document.getElementById('identidade').scrollIntoView({behavior:'smooth'})">
+        <i class="fas fa-palette"></i> Ver Identidade Visual
+      </button>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-product-showcase">
+      <div class="hero-blob"></div>
+      <div class="hero-product-cards">
+        <div class="h-card">
+          <div class="h-card-icon">💧</div>
+          <span>Sérum Facial</span>
+        </div>
+        <div class="h-card">
+          <div class="h-card-icon">🌿</div>
+          <span>Lumina Skin<br>Skincare Natural</span>
+        </div>
+        <div class="h-card">
+          <div class="h-card-icon">☀️</div>
+          <span>Protetor Solar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRATÉGIA -->
+<section id="estrategia">
+  <div class="section-header reveal">
+    <span class="section-label">02 · Estratégia</span>
+    <h2 class="section-title">Estratégia da Marca</h2>
+    <p class="section-desc">O alicerce da Lumina Skin: missão, visão, valores e o posicionamento que nos diferencia no mercado de skincare.</p>
+  </div>
+  <div class="strategy-grid">
+    <div class="reveal-left">
+      <div class="mvv-cards">
+        <div class="mvv-card">
+          <h4>🎯 Missão</h4>
+          <p>Promover o autocuidado acessível através de produtos sustentáveis que respeitem a pele e o meio ambiente, tornando a rotina de cuidados simples e prazerosa para jovens.</p>
+        </div>
+        <div class="mvv-card" style="border-left-color:var(--brown)">
+          <h4>🔭 Visão</h4>
+          <p>Ser referência nacional em skincare consciente para jovens até 2030, reconhecida pela inovação sustentável, transparência nos ingredientes e impacto positivo no bem-estar.</p>
+        </div>
+        <div style="background:white;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow)">
+          <h4 style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--sage-dark);margin-bottom:1rem">💎 Valores</h4>
+          <div class="values-grid">
+            <div class="value-item"><div class="value-icon"><i class="fas fa-leaf"></i></div><span>Sustentabilidade</span></div>
+            <div class="value-item"><div class="value-icon"><i class="fas fa-eye"></i></div><span>Transparência</span></div>
+            <div class="value-item"><div class="value-icon"><i class="fas fa-heart"></i></div><span>Inclusão</span></div>
+            <div class="value-item"><div class="value-icon"><i class="fas fa-spa"></i></div><span>Bem-estar</span></div>
+            <div class="value-item"><div class="value-icon"><i class="fas fa-lightbulb"></i></div><span>Inovação</span></div>
+            <div class="value-item"><div class="value-icon"><i class="fas fa-star"></i></div><span>Qualidade</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <h3 style="font-size:1.2rem;margin-bottom:1.5rem">👥 Público-Alvo · Personas</h3>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-avatar">🙋‍♀️</div>
+          <h4>Ana, 20 anos</h4>
+          <p class="age">Universitária · São Paulo</p>
+          <p>Ama autocuidado, segue criadores de conteúdo de beleza natural e busca produtos acessíveis que não agridam o meio ambiente.</p>
+        </div>
+        <div class="persona-card">
+          <div class="persona-avatar">🧑</div>
+          <h4>Pedro, 17 anos</h4>
+          <p class="age">Estudante · Interior</p>
+          <p>Começando a cuidar da pele, busca produtos simples, sem frescura e com ingredientes naturais que ele consiga entender.</p>
+        </div>
+      </div>
+      <div class="differential">
+        <h3>⭐ Diferencial Competitivo</h3>
+        <div class="diff-items">
+          <div class="diff-item"><i class="fas fa-check-circle"></i><span>Embalagens 100% recicláveis e biodegradáveis</span></div>
+          <div class="diff-item"><i class="fas fa-check-circle"></i><span>Fórmulas veganas sem ingredientes nocivos</span></div>
+          <div class="diff-item"><i class="fas fa-check-circle"></i><span>Preço acessível para jovens estudantes</span></div>
+          <div class="diff-item"><i class="fas fa-check-circle"></i><span>Comunicação inclusiva e representativa</span></div>
+          <div class="diff-item"><i class="fas fa-check-circle"></i><span>Ingredientes naturais com procedência transparente</span></div>
+          <div class="diff-item"><i class="fas fa-check-circle"></i><span>Produção com baixa pegada de carbono</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTIDADE VISUAL -->
+<section id="identidade">
+  <div class="section-header reveal">
+    <span class="section-label">03 · Identidade Visual</span>
+    <h2 class="section-title">Identidade Visual</h2>
+    <p class="section-desc">Cada elemento visual foi escolhido para transmitir os valores da marca: naturalidade, leveza, pureza e modernidade.</p>
+  </div>
+  <div class="identity-grid">
+    <div class="reveal-left">
+      <h3 style="font-size:1.1rem;margin-bottom:1.2rem">🔷 Logotipo Principal</h3>
+      <div class="logo-showcase">
+        <div class="logo-main">
+          <div class="logo-svg-wrap">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 8C22 8 14 17 14 27c0 12 11 21 18 27 7-6 18-15 18-27 0-10-8-19-18-19zm0 22a5 5 0 110-10 5 5 0 010 10z" fill="white" opacity="0.9"/>
+              <circle cx="32" cy="27" r="4" fill="white"/>
+            </svg>
+          </div>
+          <div class="logo-name"><span>Lumina</span> Skin</div>
+          <div class="logo-tagline">Sua pele, sua luz.</div>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+          <div style="background:var(--text);padding:1rem 1.5rem;border-radius:12px;text-align:center">
+            <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:white">Lumina <span style="color:var(--sage)">Skin</span></div>
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.5);letter-spacing:2px;margin-top:4px">VERSÃO ESCURA</div>
+          </div>
+          <div style="background:var(--sage);padding:1rem 1.5rem;border-radius:12px;text-align:center">
+            <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:white">Lumina Skin</div>
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.7);letter-spacing:2px;margin-top:4px">VERSÃO COLORIDA</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:1.1rem;margin-bottom:1.2rem;margin-top:2.5rem">🎨 Paleta de Cores</h3>
+      <div class="color-palette">
+        <div class="color-card" title="Clique para copiar">
+          <div class="color-swatch" style="background:#A8C3A0"></div>
+          <div class="color-info"><div class="name">Verde Sage</div><div class="hex">#A8C3A0</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#F5EFE6"></div>
+          <div class="color-info"><div class="name">Bege Claro</div><div class="hex">#F5EFE6</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#FFFFFF;border:1px solid #eee"></div>
+          <div class="color-info"><div class="name">Branco</div><div class="hex">#FFFFFF</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#BFA58A"></div>
+          <div class="color-info"><div class="name">Marrom Claro</div><div class="hex">#BFA58A</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal-right">
+      <h3 style="font-size:1.1rem;margin-bottom:1.2rem">✍️ Tipografia</h3>
+      <div class="typography-showcase">
+        <div class="type-item">
+          <div class="type-label">Títulos · Poppins Bold</div>
+          <div class="type-heading">Lumina Skin</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:0.5rem">ABCDEFGHIJKLMNOPQRSTUVWXYZ · 700</div>
+        </div>
+        <div class="type-item">
+          <div class="type-label">Textos · Inter Regular</div>
+          <div class="type-body">Skincare sustentável feito com amor e cuidado para a sua pele e para o planeta.</div>
+          <div style="font-size:0.75rem;color:var(--text-light);margin-top:0.5rem">abcdefghijklmnopqrstuvwxyz · 400</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:1.1rem;margin-bottom:1.2rem;margin-top:2rem">💡 Conceito Visual</h3>
+      <div style="background:var(--beige);border-radius:var(--radius);padding:2rem">
+        <p style="color:var(--text-light);line-height:1.7;margin-bottom:1.2rem">A identidade visual da Lumina Skin foi desenvolvida para transmitir autenticidade e leveza. As formas orgânicas remetem a elementos naturais como folhas e gotas d'água, criando uma conexão imediata com a proposta sustentável da marca.</p>
+        <div class="concept-pills">
+          <span class="pill">🌿 Natureza</span>
+          <span class="pill">✨ Leveza</span>
+          <span class="pill">💧 Pureza</span>
+          <span class="pill">📱 Modernidade</span>
+          <span class="pill">♻️ Sustentável</span>
+          <span class="pill">🫶 Inclusivo</span>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);margin-top:1.5rem">
+        <h4 style="font-size:0.95rem;margin-bottom:1rem">📐 Regras de Uso do Logo</h4>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem">
+          <li style="font-size:0.85rem;color:var(--text-light);display:flex;gap:8px"><span style="color:var(--sage-dark)">✓</span> Usar sempre com fundo de contraste adequado</li>
+          <li style="font-size:0.85rem;color:var(--text-light);display:flex;gap:8px"><span style="color:var(--sage-dark)">✓</span> Manter espaço de respiro ao redor do logo</li>
+          <li style="font-size:0.85rem;color:var(--text-light);display:flex;gap:8px"><span style="color:#e53935">✗</span> Não distorcer ou alterar proporções</li>
+          <li style="font-size:0.85rem;color:var(--text-light);display:flex;gap:8px"><span style="color:#e53935">✗</span> Não aplicar sobre fundos com pouco contraste</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ELEMENTOS GRÁFICOS -->
+<section id="elementos">
+  <div class="section-header center reveal">
+    <span class="section-label">04 · Elementos Gráficos</span>
+    <h2 class="section-title">Elementos Gráficos</h2>
+    <p class="section-desc">Ícones, padrões e formas fluidas que compõem o vocabulário visual da Lumina Skin.</p>
+  </div>
+  <div class="elements-grid">
+    <div class="element-card reveal">
+      <span class="element-icon">🌿</span>
+      <h4>Ícone Folha</h4>
+      <p>Representa naturalidade e conexão com a natureza</p>
+    </div>
+    <div class="element-card reveal">
+      <span class="element-icon">💧</span>
+      <h4>Gota d'Água</h4>
+      <p>Hidratação e pureza dos ingredientes</p>
+    </div>
+    <div class="element-card reveal">
+      <span class="element-icon">☀️</span>
+      <h4>Sol Suave</h4>
+      <p>Proteção solar e energia positiva</p>
+    </div>
+    <div class="element-card reveal">
+      <span class="element-icon">🌸</span>
+      <h4>Flor Natural</h4>
+      <p>Ingredientes florais e delicadeza da fórmula</p>
+    </div>
+    <div class="element-card reveal">
+      <span class="element-icon">♻️</span>
+      <h4>Reciclar</h4>
+      <p>Compromisso com embalagens sustentáveis</p>
+    </div>
+    <div class="element-card reveal">
+      <span class="element-icon">✨</span>
+      <h4>Brilho</h4>
+      <p>Luminosidade e saúde da pele</p>
+    </div>
+    <div class="element-card reveal">
+      <span class="element-icon">🫧</span>
+      <h4>Forma Orgânica</h4>
+      <p>Linhas fluidas que remetem à natureza</p>
+    </div>
+    <div class="element-card reveal">
+      <span class="element-icon">🌱</span>
+      <h4>Broto Verde</h4>
+      <p>Crescimento e início de uma jornada</p>
+    </div>
+  </div>
+  <div class="pattern-grid reveal" style="margin-top:2.5rem">
+    <div class="pattern-box" style="background:linear-gradient(135deg,rgba(168,195,160,0.3),rgba(168,195,160,0.1))">🌿🌿🌿</div>
+    <div class="pattern-box" style="background:linear-gradient(135deg,rgba(191,165,138,0.3),rgba(191,165,138,0.1))">💧✨💧</div>
+    <div class="pattern-box" style="background:linear-gradient(135deg,rgba(245,239,230,0.8),rgba(235,224,208,0.8))">🌸🌱🌸</div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="section-header center reveal">
+    <span class="section-label">05 · Produtos</span>
+    <h2 class="section-title">Linha de Produtos</h2>
+    <p class="section-desc">Três produtos essenciais desenvolvidos para cuidar da sua pele com responsabilidade ambiental.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal" onclick="openModal('serum')">
+      <div class="product-visual">
+        <div class="product-bg-shape" style="background:radial-gradient(circle,rgba(168,195,160,0.6),transparent)"></div>
+        <span class="product-emoji">💧</span>
+      </div>
+      <div class="product-info">
+        <div class="product-tag">Sérum · Tratamento</div>
+        <h3 class="product-name">Sérum Facial Lumina</h3>
+        <p class="product-desc">Concentrado de ativos naturais que ilumina e revitaliza a pele, com vitamina C vegetal e extrato de aloe vera orgânica.</p>
+        <div class="product-benefits">
+          <span class="benefit-tag">Iluminador</span>
+          <span class="benefit-tag">Anti-oxidante</span>
+          <span class="benefit-tag">Vegano</span>
+        </div>
+        <button class="product-btn">Ver Detalhes <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="product-card reveal" onclick="openModal('hidratante')">
+      <div class="product-visual">
+        <div class="product-bg-shape" style="background:radial-gradient(circle,rgba(191,165,138,0.5),transparent)"></div>
+        <span class="product-emoji">🌿</span>
+      </div>
+      <div class="product-info">
+        <div class="product-tag">Hidratante · Base</div>
+        <h3 class="product-name">Hidratante Natural Lumina</h3>
+        <p class="product-desc">Creme hidratante leve com manteiga de karité, óleo de jojoba e extrato de camomila para peles sensíveis.</p>
+        <div class="product-benefits">
+          <span class="benefit-tag">Hidratante</span>
+          <span class="benefit-tag">Calmante</span>
+          <span class="benefit-tag">Natural</span>
+        </div>
+        <button class="product-btn">Ver Detalhes <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="product-card reveal" onclick="openModal('protetor')">
+      <div class="product-visual">
+        <div class="product-bg-shape" style="background:radial-gradient(circle,rgba(245,239,230,0.8),transparent)"></div>
+        <span class="product-emoji">☀️</span>
+      </div>
+      <div class="product-info">
+        <div class="product-tag">Protetor · FPS 40</div>
+        <h3 class="product-name">Protetor Solar Lumina</h3>
+        <p class="product-desc">Protetor solar mineral FPS 40 com acabamento mate, fórmula ecológica sem filtros químicos agressivos.</p>
+        <div class="product-benefits">
+          <span class="benefit-tag">FPS 40</span>
+          <span class="benefit-tag">Mineral</span>
+          <span class="benefit-tag">Mate</span>
+        </div>
+        <button class="product-btn">Ver Detalhes <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APLICAÇÕES -->
+<section id="aplicacoes">
+  <div class="section-header center reveal">
+    <span class="section-label">06 · Aplicações</span>
+    <h2 class="section-title">Aplicações da Marca</h2>
+    <p class="section-desc">Como a identidade visual da Lumina Skin se aplica nos diferentes pontos de contato com o consumidor.</p>
+  </div>
+  <div class="app-grid">
+    <div class="app-card reveal">
+      <div class="app-visual" style="background:linear-gradient(135deg,rgba(168,195,160,0.2),rgba(168,195,160,0.05))">📦</div>
+      <div class="app-info">
+        <h4>Embalagens</h4>
+        <p>Frascos em vidro reciclado e rótulos em papel kraft com impressão a base d'água. Design minimalista com a paleta Lumina.</p>
+      </div>
+    </div>
+    <div class="app-card reveal">
+      <div class="app-visual" style="background:linear-gradient(135deg,rgba(191,165,138,0.2),rgba(191,165,138,0.05))">🛍️</div>
+      <div class="app-info">
+        <h4>Sacolas Ecológicas</h4>
+        <p>Sacolas de algodão cru com o logo bordado em verde sage. Material 100% biodegradável e reutilizável.</p>
+      </div>
+    </div>
+    <div class="app-card reveal">
+      <div class="app-visual" style="background:linear-gradient(135deg,rgba(245,239,230,0.8),rgba(235,224,208,0.5))">💼</div>
+      <div class="app-info">
+        <h4>Cartões de Visita</h4>
+        <p>Cartões em papel reciclado texturizado com acabamento em verniz localizado no logo. Frente e verso com a paleta da marca.</p>
+      </div>
+    </div>
+    <div class="app-card reveal">
+      <div class="app-visual" style="background:linear-gradient(135deg,rgba(168,195,160,0.2),rgba(191,165,138,0.1))">📱</div>
+      <div class="app-info">
+        <h4>Redes Sociais</h4>
+        <p>Templates padronizados para Instagram, TikTok e Pinterest com grid harmônico, paleta consistente e tipografia Poppins.</p>
+      </div>
+    </div>
+    <div class="app-card reveal">
+      <div class="app-visual" style="background:linear-gradient(135deg,rgba(168,195,160,0.15),rgba(245,239,230,0.5))">💻</div>
+      <div class="app-info">
+        <h4>Website</h4>
+        <p>Site responsivo com a identidade visual completa: tipografia, cores, ícones e tom de voz alinhados ao posicionamento da marca.</p>
+      </div>
+    </div>
+    <div class="app-card reveal">
+      <div class="app-visual" style="background:linear-gradient(135deg,rgba(191,165,138,0.15),rgba(168,195,160,0.1))">👕</div>
+      <div class="app-info">
+        <h4>Uniformes</h4>
+        <p>Camisetas e aventais em algodão orgânico bege com bordado do logo. Transmite profissionalismo e coerência visual.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTREGÁVEIS -->
+<section id="entregaveis">
+  <div class="section-header center reveal">
+    <span class="section-label">07 · Entregáveis</span>
+    <h2 class="section-title">Entregáveis do Branding Kit</h2>
+    <p class="section-desc">Tudo que compõe um Branding Kit completo e profissional.</p>
+  </div>
+  <div class="deliverables-grid">
+    <div class="del-card reveal">
+      <div class="del-icon">📘</div>
+      <h4>Manual da Marca</h4>
+      <p>Documento completo com todas as diretrizes de uso da marca Lumina Skin.</p>
+    </div>
+    <div class="del-card reveal">
+      <div class="del-icon">🔷</div>
+      <h4>Guia do Logotipo</h4>
+      <p>Versões, proporções, áreas de proteção e restrições de uso do logo.</p>
+    </div>
+    <div class="del-card reveal">
+      <div class="del-icon">🎨</div>
+      <h4>Paleta de Cores</h4>
+      <p>Cores primárias e secundárias com códigos HEX, RGB e CMYK.</p>
+    </div>
+    <div class="del-card reveal">
+      <div class="del-icon">✍️</div>
+      <h4>Tipografia</h4>
+      <p>Famílias tipográficas, pesos, hierarquias e exemplos de aplicação.</p>
+    </div>
+    <div class="del-card reveal">
+      <div class="del-icon">🖼️</div>
+      <h4>Aplicações Visuais</h4>
+      <p>Mockups e exemplos de como aplicar a identidade nos materiais.</p>
+    </div>
+    <div class="del-card reveal">
+      <div class="del-icon">📱</div>
+      <h4>Templates de Redes</h4>
+      <p>Modelos editáveis para stories, feed e capas de destaque.</p>
+    </div>
+    <div class="del-card reveal">
+      <div class="del-icon">📄</div>
+      <h4>Papelaria Corporativa</h4>
+      <p>Papel timbrado, envelope, cartão de visita e assinatura de e-mail.</p>
+    </div>
+    <div class="del-card reveal">
+      <div class="del-icon">🗂️</div>
+      <h4>Arquivos Finais</h4>
+      <p>Todos os assets nos formatos AI, PDF, PNG e SVG prontos para uso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREA INTERATIVA -->
+<section id="interativo">
+  <div class="section-header center reveal">
+    <span class="section-label">08 · Interativo</span>
+    <h2 class="section-title">Área Interativa</h2>
+    <p class="section-desc">Teste seu conhecimento sobre a Lumina Skin e explore o processo criativo.</p>
+  </div>
+  <div class="interactive-grid">
+    <!-- Quiz -->
+    <div class="quiz-card reveal">
+      <h3>🧠 Quiz da Marca</h3>
+      <div class="quiz-progress" id="quizProgress"></div>
+      <p class="quiz-question" id="quizQuestion"></p>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <button class="btn-primary quiz-next" id="quizNext" onclick="nextQuestion()" style="display:none">
+        Próxima Pergunta <i class="fas fa-arrow-right"></i>
+      </button>
+      <div id="quizResult" style="display:none;text-align:center;padding:1rem">
+        <div style="font-size:3rem;margin-bottom:0.75rem" id="resultEmoji"></div>
+        <h4 id="resultTitle" style="font-size:1.2rem;margin-bottom:0.5rem"></h4>
+        <p id="resultDesc" style="font-size:0.9rem;color:var(--text-light)"></p>
+        <button class="btn-primary" onclick="resetQuiz()" style="margin-top:1.2rem">
+          <i class="fas fa-redo"></i> Tentar Novamente
+        </button>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-card reveal">
+      <h3>⏱️ Linha do Tempo Criativo</h3>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <h4>1. Briefing e Pesquisa</h4>
+          <p>Análise de mercado, concorrentes e levantamento do público-alvo jovem interessado em skincare sustentável.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot" style="background:var(--brown)"></div>
+          <h4>2. Definição de Estratégia</h4>
+          <p>Criação da missão, visão, valores e posicionamento da marca Lumina Skin no mercado.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <h4>3. Conceito Visual</h4>
+          <p>Exploração de referências, moodboard e definição do conceito: natureza, leveza e modernidade.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot" style="background:var(--brown)"></div>
+          <h4>4. Desenvolvimento do Logo</h4>
+          <p>Criação de rascunhos, refinamento e digitalização do logotipo com suas variações.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <h4>5. Paleta e Tipografia</h4>
+          <p>Seleção das cores institucionais e das famílias tipográficas que definem a personalidade visual.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-dot" style="background:var(--brown)"></div>
+          <h4>6. Aplicações e Manual</h4>
+          <p>Criação dos mockups, templates e documentação do manual de identidade visual.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Before/After -->
+    <div class="ba-card reveal">
+      <h3>🔄 Antes e Depois da Identidade Visual</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+        <div style="background:#F0F0F0;border-radius:12px;padding:2rem;text-align:center">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🤔</div>
+          <h5 style="font-family:'Poppins',sans-serif;margin-bottom:0.75rem;color:#777">ANTES</h5>
+          <ul style="list-style:none;text-align:left;font-size:0.82rem;color:#888;line-height:2">
+            <li>❌ Sem identidade definida</li>
+            <li>❌ Cores inconsistentes</li>
+            <li>❌ Logo improvisado</li>
+            <li>❌ Comunicação confusa</li>
+            <li>❌ Sem diretrizes visuais</li>
+          </ul>
+        </div>
+        <div style="background:linear-gradient(135deg,var(--beige),rgba(168,195,160,0.15));border-radius:12px;padding:2rem;text-align:center;border:2px solid rgba(168,195,160,0.3)">
+          <div style="font-size:2.5rem;margin-bottom:1rem">✨</div>
+          <h5 style="font-family:'Poppins',sans-serif;margin-bottom:0.75rem;color:var(--sage-dark)">DEPOIS</h5>
+          <ul style="list-style:none;text-align:left;font-size:0.82rem;color:var(--text-light);line-height:2">
+            <li>✅ Identidade visual coesa</li>
+            <li>✅ Paleta de cores definida</li>
+            <li>✅ Logo profissional</li>
+            <li>✅ Comunicação clara</li>
+            <li>✅ Manual completo</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;background:rgba(168,195,160,0.1);border-radius:12px;padding:1.2rem;text-align:center">
+        <p style="font-size:0.88rem;color:var(--text-light)">💡 <strong>O branding transforma</strong> uma ideia genérica em uma marca com personalidade, consistência e capacidade de criar conexão emocional com o público.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="section-header center reveal">
+    <span class="section-label">09 · Equipe</span>
+    <h2 class="section-title">Participação da Equipe</h2>
+    <p class="section-desc">Conheça os integrantes que tornaram o projeto Lumina Skin possível.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">🔍</div>
+      <h4 class="team-name" contenteditable="true" title="Clique para editar">Integrante 1</h4>
+      <div class="team-role">Pesquisa de Mercado</div>
+      <ul class="team-contributions">
+        <li>Análise de concorrentes</li>
+        <li>Pesquisa de tendências</li>
+        <li>Mapeamento do público-alvo</li>
+        <li>Criação das personas</li>
+      </ul>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">📊</div>
+      <h4 class="team-name" contenteditable="true" title="Clique para editar">Integrante 2</h4>
+      <div class="team-role">Estratégia da Marca</div>
+      <ul class="team-contributions">
+        <li>Definição de missão e visão</li>
+        <li>Elaboração dos valores</li>
+        <li>Posicionamento da marca</li>
+        <li>Diferencial competitivo</li>
+      </ul>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">🎨</div>
+      <h4 class="team-name" contenteditable="true" title="Clique para editar">Integrante 3</h4>
+      <div class="team-role">Identidade Visual</div>
+      <ul class="team-contributions">
+        <li>Criação do logotipo</li>
+        <li>Definição da paleta de cores</li>
+        <li>Escolha da tipografia</li>
+        <li>Elementos gráficos</li>
+      </ul>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">💻</div>
+      <h4 class="team-name" contenteditable="true" title="Clique para editar">Integrante 4</h4>
+      <div class="team-role">Desenvolvimento do Site</div>
+      <ul class="team-contributions">
+        <li>Programação HTML/CSS/JS</li>
+        <li>Design responsivo</li>
+        <li>Animações e interatividade</li>
+        <li>Testes e ajustes</li>
+      </ul>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">🎤</div>
+      <h4 class="team-name" contenteditable="true" title="Clique para editar">Integrante 5</h4>
+      <div class="team-role">Apresentação Final</div>
+      <ul class="team-contributions">
+        <li>Roteiro da apresentação</li>
+        <li>Slides de apoio</li>
+        <li>Defesa do projeto</li>
+        <li>Coordenação da equipe</li>
+      </ul>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:2rem;padding:1.5rem;background:rgba(168,195,160,0.15);border-radius:var(--radius);max-width:600px;margin-left:auto;margin-right:auto" class="reveal">
+    <p style="font-size:0.85rem;color:var(--text-light);font-style:italic">💡 Clique sobre os nomes acima para editá-los diretamente.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+        <path d="M12 2C8 2 5 5.5 5 9c0 5 5 9 7 11 2-2 7-6 7-11 0-3.5-3-7-7-7zm0 9a2 2 0 110-4 2 2 0 010 4z"/>
+      </svg>
+    </div>
+    <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.2rem">Lumina <span style="color:var(--sage)">Skin</span></span>
+  </div>
+  <p><em>"Sua pele, sua luz."</em></p>
+  <p style="margin-top:0.5rem">Projeto de <span style="color:var(--sage)">Branding Kit</span> desenvolvido para Seminário Escolar de Artes &middot; 2025</p>
+  <p style="margin-top:1rem;font-size:0.78rem;color:rgba(255,255,255,0.35)">Marca fictícia criada com fins educacionais &middot; HTML · CSS · JavaScript</p>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ===== SCROLL REVEAL =====
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ===== COLOR COPY =====
+document.querySelectorAll('.color-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const hex = card.querySelector('.hex')?.textContent;
+    if (hex) {
+      navigator.clipboard.writeText(hex).then(() => {
+        const orig = card.querySelector('.name').textContent;
+        card.querySelector('.name').textContent = '✓ Copiado!';
+        setTimeout(() => card.querySelector('.name').textContent = orig, 1500);
+      });
+    }
+  });
+});
+
+// ===== PRODUCTS MODAL =====
+const products = {
+  serum: {
+    emoji: '💧',
+    tag: 'Sérum · Tratamento Intensivo',
+    name: 'Sérum Facial Lumina',
+    desc: 'Nosso sérum facial é o coração da linha Lumina Skin. Desenvolvido com uma combinação única de vitamina C vegetal, extraída da camu-camu, e extrato concentrado de aloe vera orgânica certificada. A textura levíssima permite absorção imediata, sem resíduos gordurosos.',
+    benefits: ['Ilumina e uniformiza o tom da pele','Potente ação antioxidante contra radicais livres','Hidratação profunda de longa duração','Fórmula hipoalergênica para peles sensíveis','Cruelty-free e 100% vegano'],
+    ingredients: ['Vitamina C Vegetal','Aloe Vera Orgânica','Ácido Hialurônico','Extrato de Chá Verde','Pantenol']
+  },
+  hidratante: {
+    emoji: '🌿',
+    tag: 'Hidratante · Cuidado Diário',
+    name: 'Hidratante Natural Lumina',
+    desc: 'Creme hidratante de textura aveludada formulado especialmente para a rotina diária. A combinação de manteiga de karité e óleo de jojoba cria uma barreira protetora natural que mantém a hidratação por até 24 horas, enquanto o extrato de camomila acalma e suaviza.',
+    benefits: ['Hidratação prolongada por 24 horas','Ação calmante para peles sensíveis','Textura leve, não oleosa','Fortalece a barreira cutânea natural','Aroma suave de camomila e lavanda'],
+    ingredients: ['Manteiga de Karité','Óleo de Jojoba','Extrato de Camomila','Ceramidas Vegetais','Glicerina Vegetal']
+  },
+  protetor: {
+    emoji: '☀️',
+    tag: 'Protetor Solar · FPS 40 Mineral',
+    name: 'Protetor Solar Lumina',
+    desc: 'Protetor solar mineral FPS 40 com tecnologia de última geração. Diferente dos filtros químicos convencionais, nossa fórmula utiliza dióxido de titânio micronizado que age como uma barreira física, refletindo os raios UV sem ser absorvido pela pele. Acabamento mate perfeito para uso diário.',
+    benefits: ['Proteção UVA e UVB com FPS 40','Fórmula mineral sem filtros químicos agressivos','Acabamento mate para controle de oleosidade','Compatível com todos os tipos de pele','Resistente ao suor por 2 horas'],
+    ingredients: ['Dióxido de Titânio Micronizado','Extrato de Neem','Vitamina E','Óleo de Coco Fracionado','Óxido de Zinco']
+  }
+};
+
+function openModal(id) {
+  const p = products[id];
+  document.getElementById('modalContent').innerHTML = `
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <span class="modal-emoji">${p.emoji}</span>
+    <h2>${p.name}</h2>
+    <span class="modal-tag">${p.tag}</span>
+    <p>${p.desc}</p>
+    <div class="modal-benefits">
+      <h4>✅ Benefícios</h4>
+      <ul>${p.benefits.map(b=>`<li>${b}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-ingredients">
+      <h4>🌿 Ingredientes Principais</h4>
+      <div class="ing-tags">${p.ingredients.map(i=>`<span class="ing-tag">${i}</span>`).join('')}</div>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+<script>
+// ===== QUIZ =====
+const quizData = [
+  {
+    q: "Qual é o slogan oficial da Lumina Skin?",
+    opts: ["Natureza em cada gota", "Sua pele, sua luz.", "Cuidado que transforma", "Beleza consciente"],
+    correct: 1,
+    feedback: "🎉 Correto! \"Sua pele, sua luz.\" transmite a essência da marca: empoderar jovens através do autocuidado natural."
+  },
+  {
+    q: "Qual é a cor principal da paleta da Lumina Skin?",
+    opts: ["Azul Oceano (#2196F3)", "Roxo Lavanda (#9C27B0)", "Verde Sage (#A8C3A0)", "Rosa Quartz (#F48FB1)"],
+    correct: 2,
+    feedback: "✅ Perfeito! O Verde Sage (#A8C3A0) foi escolhido para transmitir naturalidade e conexão com o meio ambiente."
+  },
+  {
+    q: "Qual é o público-alvo da Lumina Skin?",
+    opts: ["Adultos de 40 a 60 anos", "Crianças de 5 a 12 anos", "Jovens de 15 a 30 anos", "Idosos acima de 65 anos"],
+    correct: 2,
+    feedback: "🙌 Exato! Jovens de 15 a 30 anos que valorizam autocuidado, beleza natural e responsabilidade ambiental."
+  },
+  {
+    q: "Qual tipografia é usada nos títulos da Lumina Skin?",
+    opts: ["Times New Roman Bold", "Roboto Condensed", "Poppins Bold", "Arial Black"],
+    correct: 2,
+    feedback: "✨ Certo! A Poppins Bold foi escolhida por ser moderna, legível e transmitir a personalidade jovem da marca."
+  },
+  {
+    q: "Qual é o FPS do Protetor Solar Lumina?",
+    opts: ["FPS 15", "FPS 25", "FPS 30", "FPS 40"],
+    correct: 3,
+    feedback: "☀️ Correto! O Protetor Solar Lumina é FPS 40, com fórmula mineral sem filtros químicos agressivos."
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function renderQuiz() {
+  const q = quizData[currentQ];
+  const progress = document.getElementById('quizProgress');
+  const question = document.getElementById('quizQuestion');
+  const options = document.getElementById('quizOptions');
+  const feedback = document.getElementById('quizFeedback');
+  const nextBtn = document.getElementById('quizNext');
+
+  progress.innerHTML = quizData.map((_, i) =>
+    `<div class="q-dot ${i < currentQ ? 'done' : i === currentQ ? 'active' : ''}"></div>`
+  ).join('');
+
+  question.textContent = `Pergunta ${currentQ + 1}: ${q.q}`;
+  options.innerHTML = q.opts.map((opt, i) =>
+    `<button class="quiz-opt" onclick="selectAnswer(${i})">${opt}</button>`
+  ).join('');
+  feedback.style.display = 'none';
+  nextBtn.style.display = 'none';
+  answered = false;
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  const q = quizData[currentQ];
+  const opts = document.querySelectorAll('.quiz-opt');
+  const feedback = document.getElementById('quizFeedback');
+
+  opts.forEach((opt, i) => {
+    opt.disabled = true;
+    if (i === q.correct) opt.classList.add('correct');
+    if (i === idx && i !== q.correct) opt.classList.add('wrong');
+  });
+
+  if (idx === q.correct) score++;
+
+  feedback.innerHTML = q.feedback;
+  feedback.style.display = 'block';
+  feedback.style.background = idx === q.correct ? 'rgba(76,175,80,0.1)' : 'rgba(244,67,54,0.1)';
+  feedback.style.color = idx === q.correct ? '#2E7D32' : '#c62828';
+  feedback.style.padding = '1rem';
+  feedback.style.borderRadius = '12px';
+
+  const nextBtn = document.getElementById('quizNext');
+  nextBtn.textContent = currentQ < quizData.length - 1 ? 'Próxima Pergunta →' : 'Ver Resultado';
+  nextBtn.style.display = 'flex';
+  nextBtn.style.justifyContent = 'center';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ < quizData.length) {
+    renderQuiz();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById('quizQuestion').style.display = 'none';
+  document.getElementById('quizOptions').style.display = 'none';
+  document.getElementById('quizFeedback').style.display = 'none';
+  document.getElementById('quizNext').style.display = 'none';
+  const result = document.getElementById('quizResult');
+  result.style.display = 'block';
+  const pct = (score / quizData.length) * 100;
+  const emoji = pct === 100 ? '🏆' : pct >= 60 ? '🌟' : '📚';
+  const title = pct === 100 ? 'Perfeito! Você domina o branding!' : pct >= 60 ? 'Muito bem! Você conhece a marca!' : 'Continue estudando!';
+  const desc = `Você acertou ${score} de ${quizData.length} perguntas (${pct}%)`;
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultDesc').textContent = desc;
+}
+
+function resetQuiz() {
+  currentQ = 0; score = 0; answered = false;
+  document.getElementById('quizQuestion').style.display = 'block';
+  document.getElementById('quizOptions').style.display = 'flex';
+  document.getElementById('quizResult').style.display = 'none';
+  renderQuiz();
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
